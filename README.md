@@ -1,12 +1,12 @@
 # Java Online Marathon
 ## To-Do List Project
-Для розгортання бази даних можна використати файл 'todolist_db.sql'
+Для розгортання бази даних встановіть параметр
+spring.jpa.hibernate.ddl-auto=create
+в файлі 
+application.properties
 
-![text](https://i.ibb.co/K7LjsTJ/todolist-db.jpg)
+Під час старту проекту база даних автоматично буде заповенена тестовими даними, що є в файлі data.sql 
 
-Його можна запустити з SQL Shell (psql) за допомогою наспупної команди:
-
-> \i <path_to_file>/todolist_db.sql
 
 У базі збережено трьох користувачів з ролями ADMIN та USER.
 

@@ -1,7 +1,6 @@
 package com.softserve.itacademy.service;
 
 import com.softserve.itacademy.model.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -12,5 +11,4 @@ public interface UserService {
     void delete(long id);
     List<User> getAll();
 
-    UserDetails loadUserByUsername(String username);
 }
