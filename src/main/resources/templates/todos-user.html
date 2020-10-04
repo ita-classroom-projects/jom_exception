@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Read existing User</title>
@@ -31,8 +29,6 @@
                 </td>
                 <td th:text="${#temporals.format(todo.createdAt, 'dd.MM.yyyy HH:mm')}"/>
                 <td th:text="${todo.getOwner().firstName + ' ' + todo.getOwner().lastName}"></td>
-                <span th:if="${#authorization.expression('hasAuthority(''ADMIN'')')
-                    or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == todo.owner.id}">
                 <td>
                     <a th:href="@{|/todos/${todo.id}/update/users/${todo.owner.id}|}">Edit</a>
                 </td>
@@ -40,8 +36,6 @@
                     <a th:href="@{|/todos/${todo.id}/delete/users/${todo.owner.id}|}">Remove</a>
                 </td>
             </span>
-                <span th:unless="${#authorization.expression('hasAuthority(''ADMIN'')')
-                    or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == todo.owner.id}">
                 <td>
                     <a style="color: gray; cursor: pointer"><u>Edit</u></a>
                 </td>
@@ -52,7 +46,7 @@
             </tr>
         </table>
     </div>
-    <span sec:authorize="hasAuthority('ADMIN')">
+    <span>
         <a th:href="@{/users/all}">Go to Users List</a>
     </span>
 </body>

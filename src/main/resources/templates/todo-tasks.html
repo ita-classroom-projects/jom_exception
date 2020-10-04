@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Read existing To-Do</title>
@@ -13,8 +11,7 @@
         <form th:action="@{|/tasks/create/todos/${todo.id}|}" method="get" style="display: inline-block; margin-right: 20px">
             <input type="submit" value="Create Task">
         </form>
-        <span th:if="${#authorization.expression('hasAuthority(''ADMIN'')')
-                    or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == todo.owner.id}">
+        <span>
         <form th:action="@{/todos/{id}/add(id = ${todo.id})}" method="get" style="display: inline-block">
             <label for="users">Collaborators:</label>
             <select name="user_id" id="users">
@@ -62,8 +59,7 @@
                             <td>
                                 <a th:href="@{|/users/${collaborator.id}/read|}" th:text="${collaborator.firstName + ' ' + collaborator.lastName}" />
                             </td>
-                            <td th:if="${#authorization.expression('hasAuthority(''ADMIN'')')
-                                    or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == todo.owner.id}">
+                            <td>
                                 <a th:href="@{/todos/{id}/remove(id = ${todo.id}, user_id = ${collaborator.id})}">Remove</a>
                             </td>
                         </tr>
@@ -72,8 +68,7 @@
             </tr>
         </table>
     </div>
-    <span th:if="${#authorization.expression('hasAuthority(''ADMIN'')')
-                or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == todo.owner.id}">
+    <span >
         <a th:href="@{|/todos/all/users/${todo.owner.id}|}">Go to To-Do List</a>
     </span>
 </body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div th:replace="header"></div>
+    <div style="margin: 0 auto; width: max-content">
+        <h2>List of Users</h2>
+        <form th:action="@{/users/create}" method="get">
+            <input type="submit" value="Create new User">
+        </form>
+        <br>
+        <table border="1">
+            <tr>
+                <th>No.</th>
+                <th>Id</th>
+                <th>Full name</th>
+                <th>E-mail</th>
+                <th colspan="2">Operations</th>
+            </tr>
+            <tr th:each="user, iStat: ${users}">
+                <td th:text="${iStat.index + 1}" />
+                <td th:text="${user.id}" />
+                <td>
+                    <a th:href="@{|/todos/all/users/${user.id}|}" th:text="${user.firstName + ' ' + user.lastName}" />
+                </td>
+                <td th:text="${user.email}"/>
+
+                <td>
+                    <a th:href="@{|/users/${user.id}/update|}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
