@@ -1,19 +1,14 @@
 # Java Online Marathon
 ## To-Do List Project
-Для розгортання бази даних встановіть параметр
-spring.jpa.hibernate.ddl-auto=create
-в файлі 
-application.properties
+1. Implement exception handling for custom exception.
+2. Create "Error" page. Page should contain information about exception (message exception).
+3. Create 404 page and 500 page.
+4. Implement exception handling with redirection to "Error" page.
 
-Під час старту проекту база даних автоматично буде заповенена тестовими даними, що є в файлі data.sql 
+On service layer methods 
+- create and update should throw NullEntityReferenceException when user try to create or update empty object
+- find... and delete shoul throw EntityNotFoundException exception when user try to read or delete unexisted object
 
+###Submit links to github repository and make short video (2-5 minutes) where demonstrate the functionality as the result of your work!Add exception package when create###
+ 
 
-У базі збережено трьох користувачів з ролями ADMIN та USER.
-
-| Логін         | Пароль | Роль  |
-| ------------- |:------:|:-----:|
-| mike@mail.com | 1111   | ADMIN |
-| nick@mail.com | 2222   | USER  |
-| nora@mail.com | 3333   | USER  |
-
-Користувач з роллю ADMIN має повний доступ до всіх ресурсів.
